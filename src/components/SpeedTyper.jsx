@@ -10,7 +10,7 @@ const SpeedTyper = ({ difficulty }) => {
   const [gameOver, setGameOver] = useState(false);
 
   const words = {
-    "easy": ["elma", "muz", "Üzüm", "çilek", "karpuz", "armut", "portakal"],
+    "easy": ["elma", "muz", "üzüm", "çilek", "karpuz", "armut", "portakal,kiraz,fıstık,fındık"],
   "medium": ["fil", "gitar", "bilgisayar", "telefon", "tablet", "televizyon", "radyo"],
   "hard": [
     "aşkınsızlaşacağım",
@@ -68,7 +68,7 @@ const SpeedTyper = ({ difficulty }) => {
 
   return (
     <div className="container">
-      <h2>👩‍💻 Hızlı Yazıcı 👨‍💻</h2>
+      <h2>👩‍💻 Yazı Ustası  👨‍💻</h2>
       <small>Şunları yazınız:</small>
 
       <h1 id="word">{word}</h1>
