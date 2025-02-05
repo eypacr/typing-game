@@ -5,7 +5,7 @@ const Settings = ({ difficulty, onDifficultyChange }) => {
     <div className="settings">
       <form id="settings-form">
         <div>
-          <label htmlFor="difficulty">Difficulty </label>
+          <label htmlFor="difficulty">Zorluk Derecesi </label>
           <select
             id="difficulty"
             value={difficulty}
