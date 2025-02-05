@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import SpeedTyper from "./components/SpeedTyper";
+import Settings from "./components/Settings";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [difficulty, setDifficulty] = useState(
+    localStorage.getItem("difficulty") || "medium"
+  );
+  const [showSettings, setShowSettings] = useState(false); // Ayarların görünür olup olmama durumu
+
+  // Zorluk seviyesi değiştiğinde, ayarları kaydediyoruz
+  const handleDifficultyChange = (newDifficulty) => {
+    setDifficulty(newDifficulty);
+    localStorage.setItem("difficulty", newDifficulty);
+  };
+
+  // Ayarları gösterme veya gizleme
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="App">
+      {/* Ayarları sol alt köşeye yerleştiren buton */}
+      <button onClick={toggleSettings} className="settings-btn">
+        <i className="fas fa-cog"> </i>
+      </button>
 
-export default App
+      {showSettings || (
+        <Settings
+          difficulty={difficulty}
+          onDifficultyChange={handleDifficultyChange}
+        />
+      )}
+
+      {/* SpeedTyper bileşeni */}
+      <SpeedTyper difficulty={difficulty} />
+    </div>
+  );
+}
